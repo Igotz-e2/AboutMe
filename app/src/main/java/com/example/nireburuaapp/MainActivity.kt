@@ -24,7 +24,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.nireburuaapp.ui.theme.NireburuaAppTheme
-import org.w3c.dom.Text
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -136,7 +135,7 @@ fun Greeting(name: String, surname:String, description:String,hobbies: List<Pair
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp)  // Tamaño del ícono
+                        modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
@@ -173,12 +172,12 @@ fun SocialMediaLinks(
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        // Enlace a LinkedIn con tu icono
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clickable {
-                    uriHandler.openUri("https://www.linkedin.com/in/tu-usuario")
+                    uriHandler.openUri("https://www.linkedin.com/in/")
                 }
                 .padding(8.dp)
         ) {
@@ -194,12 +193,12 @@ fun SocialMediaLinks(
             )
         }
 
-        // Enlace a Instagram con tu icono
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clickable {
-                    uriHandler.openUri("https://www.instagram.com/tu-usuario")
+                    uriHandler.openUri("https://www.instagram.com/")
                 }
                 .padding(8.dp)
         ) {
@@ -215,19 +214,19 @@ fun SocialMediaLinks(
             )
         }
 
-        // Enlace a GitHub con tu icono
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clickable {
-                    uriHandler.openUri("https://www.github.com/tu-usuario")
+                    uriHandler.openUri("https://www.github.com/")
                 }
                 .padding(8.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.icon_github), // Cambia el nombre a tu icono
+                painter = painterResource(id = R.drawable.icon_github),
                 contentDescription = "GitHub",
-                modifier = Modifier.size(24.dp) // Ajusta el tamaño según lo necesites
+                modifier = Modifier.size(24.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
