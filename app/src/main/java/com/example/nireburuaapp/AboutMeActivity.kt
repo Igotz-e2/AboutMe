@@ -40,14 +40,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.nireburuaapp.ui.theme.NireburuaAppTheme
+import com.example.nireburuaapp.ui.theme.AboutMeTheme
 
 class AboutMeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NireburuaAppTheme {
+            AboutMeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     AboutMeScreen(
                         name = "Igotz",
@@ -238,7 +238,7 @@ fun SocialMediaLinks(
 @Preview(showBackground = true)
 @Composable
 fun AboutMePreview() {
-    NireburuaAppTheme {
+    AboutMeTheme {
         AboutMeScreen(
             name = "Igotz" ,
             surname = "Idigoras",
