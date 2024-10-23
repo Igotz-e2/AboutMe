@@ -1,7 +1,7 @@
 package com.example.nireburuaapp.navigation
 
 enum class NavScreen {
-    HomeScreen,
+    Home,
     AboutMe,
     Gallery,
     Settings,

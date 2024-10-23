@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.nireburuaapp.HomeScreen
+import com.example.nireburuaapp.MainActivity
 import com.example.nireburuaapp.screens.GalleryScreen
 import com.example.nireburuaapp.screens.SettingsScreen
 
@@ -19,10 +20,10 @@ fun Navigation(
 ){
     NavHost (
         navController = navController,
-        startDestination = NavScreen.HomeScreen.name
+        startDestination = NavScreen.Home.name
     ){
-        composable(NavScreen.HomeScreen.name){
-            HomeScreen()
+        composable(NavScreen.Home.name){
+            MainActivity()
         }
         composable(NavScreen.AboutMe.name){
             com.example.nireburuaapp.screens.AboutMeScreen(
