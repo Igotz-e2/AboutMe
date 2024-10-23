@@ -156,10 +156,8 @@ fun AboutMeScreen(name: String, surname:String, description:String, hobbies: Lis
 
 
 @Composable
-fun SocialMediaLinks(
-    uriHandler: UriHandler,
-    modifier: Modifier = Modifier
-) {
+fun SocialMediaLinks(uriHandler: UriHandler, modifier: Modifier) {
+
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
