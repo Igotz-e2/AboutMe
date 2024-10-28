@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.nireburuaapp.HomeScreen
 import com.example.nireburuaapp.MainActivity
+import com.example.nireburuaapp.model.SettingsViewModel
 import com.example.nireburuaapp.screens.GalleryScreen
 import com.example.nireburuaapp.screens.SettingsScreen
 
@@ -42,8 +43,7 @@ fun Navigation(
             GalleryScreen()
         }
         composable(NavScreen.Settings.name){
-            SettingsScreen()
+            SettingsScreen(viewModel = SettingsViewModel())
         }
     }
-
 }

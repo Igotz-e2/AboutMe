@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -50,6 +51,9 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.gms:play-services-auth:20.5.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.compose.ui:ui:1.4.0")
     implementation("androidx.compose.material3:material3:1.1.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.0")
@@ -74,6 +78,9 @@ dependencies {
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.foundation.android)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

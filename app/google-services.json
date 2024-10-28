@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049810923001",
+    "project_id": "aboutme-7faff",
+    "storage_bucket": "aboutme-7faff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049810923001:android:df504e9bf489fbfbc16128",
+        "android_client_info": {
+          "package_name": "com.example.nireburuaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049810923001-8mfi4uqufmakjnu632s03o8tiniq8e1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg3oFGkUYIAfpFs-mKLphxP4Ou3WALmuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049810923001-8mfi4uqufmakjnu632s03o8tiniq8e1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

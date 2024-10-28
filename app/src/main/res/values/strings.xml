@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">NireburuaApp</string>
+    <string name="titulo_iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="titulo_registrarse">REGISTRARSE</string>
+    <string name="instruccion_iniciar_sesion">Por favor, indica tu email y contraseña</string>
+    <string name="instruccion_registrarse">Por favor, completa los siguientes datos</string>
+    <string name="placeholder_email">EMAIL</string>
+    <string name="placeholder_contrasena">CONTRASEÑA</string>
+    <string name="placeholder_nombre">NOMBRE</string>
+    <string name="placeholder_apellido">APELLIDO</string>
+    <string name="boton_iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="boton_registrarse">REGISTRARSE</string>
+    <string name="texto_crear_cuenta">¿No tienes una cuenta? Crear una cuenta</string>
+    <string name="texto_iniciar_sesion">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="boton_cerrar_sesion">Cerrar sesión</string>
+    <string name="iniciar_sesion_google">Inicio sesion Google</string>
+    <string name="contdesc_general">Imagen</string>
+    <string name="error_login">Error al iniciar sesión. Por favor, verifica tus credenciales.</string>
+    <string name="error_registro">Error al registrar el usuario. Inténtalo de nuevo.</string>
+    <string name="error_invalid_email">El formato del correo electrónico es inválido. Por favor, introduce un correo electrónico válido.</string>
+    <string name="error_empty_fields">Por favor, completa todos los campos.</string>
+    <string name="error_weak_password">La contraseña es  débil. Debe tener 6 caracteres, Mayuscula y un Caracter especial.</string>
+    <string name="error_email_exists">Este correo electrónico ya está en uso. Por favor, utiliza otro correo electrónico.</string>
+    <string name="no_disponible">No Disponible</string>
+    <string name="campo_nombre">Nombre:</string>
+    <string name="campo_apellido">Apellido:</string>
+    <string name="campo_email">Email:</string>
+    <string name="titulo_perfil">Tu cuenta</string>
 </resources>
