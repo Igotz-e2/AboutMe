@@ -59,7 +59,9 @@ fun SettingsScreen(viewModel: SettingsViewModel){
     if (user != null) {
         // Si el usuario está logueado, mostramos su perfil
         PerfilUsuario (
-            user = user!!, onLogout = { viewModel.logout(context) },
+            user = user!!,
+            onLogout = { viewModel.logout(context) },
+            onAddTask = { task -> viewModel.addTask(task) }
         )
     } else {
         // Si no está logueado, mostramos la pantalla de autenticación (login/registro)
@@ -72,7 +74,12 @@ fun SettingsScreen(viewModel: SettingsViewModel){
                     email,
                     password
                 )
-            },
+            },onLoginWithGitHub = {
+                viewModel.iniciarSesionConGitHub(context)
+                                  }, // Llama al método de inicio de sesión con GitHub
+            onLoginWithPhone = {
+                viewModel.iniciarSesionConTelefono(context)
+                               },
             viewModel = viewModel
         )
     }
@@ -81,10 +88,12 @@ fun SettingsScreen(viewModel: SettingsViewModel){
 @Composable
 fun PerfilUsuario(
     user: FirebaseUser,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onAddTask: (String) -> Unit
 ) {
     val userId = user.uid
     val userData = remember { mutableStateOf<Map<String, Any>?>(null) }
+    val taskInput = remember { mutableStateOf("") }
 
     fun obtenerDatosUsuario() {
         val db = FirebaseFirestore.getInstance()
@@ -162,6 +171,34 @@ fun PerfilUsuario(
 
         Spacer(modifier = Modifier.height(4.dp))
 
+        TextField(
+            value = taskInput.value,
+            onValueChange = { taskInput.value = it },
+            label = { Text(stringResource(R.string.placeholder_tarea)) },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = {
+                if (taskInput.value.isNotBlank()) {
+                    onAddTask(taskInput.value) // Añadir la tarea
+                    taskInput.value = "" // Limpiar el campo
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            )
+        ) {
+            Text(
+                text = stringResource(R.string.boton_agregar_tarea),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+
         Button(
             onClick = onLogout,
             modifier = Modifier.fillMaxWidth(),
@@ -182,6 +219,8 @@ fun PerfilUsuario(
 fun AuthScreen(
     onLogin: (String, String) -> Unit,
     onRegister: (String, String, String, String) -> Unit,
+    onLoginWithGitHub: () -> Unit, // Nueva función para iniciar sesión con GitHub
+    onLoginWithPhone: () -> Unit,
     viewModel: SettingsViewModel
 ) {
 
@@ -309,6 +348,44 @@ fun AuthScreen(
                 )
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            ),
+            onClick = {
+                // Llama a la función para iniciar sesión con GitHub
+                onLoginWithGitHub()
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(R.string.iniciar_sesion_github),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Botón para iniciar sesión con teléfono
+        Button(
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            ),
+            onClick = {
+                // Llama a la función para iniciar sesión con teléfono
+                onLoginWithPhone()
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(R.string.iniciar_sesion_telefono),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+
+
 
         Spacer(modifier = Modifier.height(16.dp))
 

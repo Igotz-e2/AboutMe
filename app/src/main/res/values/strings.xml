@@ -26,4 +26,14 @@
     <string name="campo_apellido">Apellido:</string>
     <string name="campo_email">Email:</string>
     <string name="titulo_perfil">Tu cuenta</string>
+
+    <string name="titulo_tarea">Añadir Tarea</string>
+    <string name="mensaje_tarea_exitosa">Tarea añadida correctamente.</string>
+    <string name="mensaje_error_tarea">Error al añadir la tarea. Inténtalo de nuevo.</string>
+    <string name="placeholder_titulo_tarea">Título de la tarea</string>
+    <string name="placeholder_descripcion_tarea">Descripción de la tarea</string>
+    <string name="boton_agregar_tarea">Añadir Tarea</string>
+    <string name="placeholder_tarea">Tarea\n</string>
+    <string name="iniciar_sesion_github">Iniciar sesion con GitHub\n</string>
+    <string name="iniciar_sesion_telefono">Iniciar sesion con Telefono\n</string>
 </resources>

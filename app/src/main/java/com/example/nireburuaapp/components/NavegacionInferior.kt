@@ -27,7 +27,7 @@ fun NavegacionInferior(
     )
     BottomAppBar{
         NavigationBar (
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .fillMaxWidth()
         ){

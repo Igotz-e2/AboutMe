@@ -1,8 +1,10 @@
 package com.example.nireburuaapp.model
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,16 +14,23 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.OAuthProvider
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.util.concurrent.TimeUnit
 
 class SettingsViewModel : ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -185,6 +194,65 @@ class SettingsViewModel : ViewModel() {
         } catch (e: ApiException) {
             Log.w("GoogleSignIn", "Google sign in failed", e)
         }
+    }
+
+    fun iniciarSesionConGitHub(context: Context) {
+        val auth = FirebaseAuth.getInstance()
+        val provider = OAuthProvider.newBuilder("github.com")
+
+        // Inicia el flujo de inicio de sesión
+        auth.startActivityForSignInWithProvider(context as Activity, provider.build())
+            .addOnSuccessListener { authResult ->
+                // Autenticación exitosa
+                val user = authResult.user
+                // Manejar el usuario autenticado (por ejemplo, almacenar datos del usuario)
+            }
+            .addOnFailureListener { exception ->
+                // Manejar la excepción
+                Log.e("Auth", "Error al iniciar sesión con GitHub: ${exception.message}")
+                Toast.makeText(context, "Error al iniciar sesión con GitHub", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    // Función para iniciar sesión con teléfono
+    fun iniciarSesionConTelefono(context: Context) {
+        // Aquí puedes usar PhoneAuthProvider de Firebase
+        val phoneNumber = "número_de_tel" // Obtén el número de teléfono del usuario
+        val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+            .setPhoneNumber(phoneNumber)       // Número de teléfono a verificar
+            .setTimeout(60L, TimeUnit.SECONDS) // Tiempo de espera para la verificación
+            .setActivity(context as Activity)   // Actividad que maneja la verificación
+            .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                    // La verificación fue completada, puedes iniciar sesión
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                // Manejar el inicio de sesión exitoso
+                            } else {
+                                // Manejar el error
+                            }
+                        }
+                }
+
+                override fun onVerificationFailed(e: FirebaseException) {
+                    // Manejar la falla en la verificación
+                }
+
+                override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+                    // El código fue enviado, ahora puedes pedir al usuario que ingrese el código
+                    // Puedes guardar el verificationId para usarlo más tarde
+                }
+            })
+            .build()
+
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    fun addTask(task: String) {
+        val userId = user.value?.uid ?: return
+        val taskData = hashMapOf("task" to task)
+        db.collection("tasks").document(userId).collection("userTasks").add(taskData)
     }
 
     companion object {

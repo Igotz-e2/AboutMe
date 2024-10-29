@@ -85,7 +85,7 @@ fun HomeScreen (){
             TopAppBar(
                 title = { Text("Mi Perfil") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer // Establecer color de fondo
+                    containerColor = MaterialTheme.colorScheme.primary // Establecer color de fondo
                 ),
                 actions = {
                     IconButton(onClick = {
