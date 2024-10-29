@@ -34,6 +34,12 @@ fun GalleryScreen() {
         Photo(R.drawable.photo3),
         Photo(R.drawable.photo4),
         Photo(R.drawable.photo5),
+        Photo(R.drawable.photo6),
+        Photo(R.drawable.photo1),
+        Photo(R.drawable.photo2),
+        Photo(R.drawable.photo3),
+        Photo(R.drawable.photo4),
+        Photo(R.drawable.photo5),
         Photo(R.drawable.photo6)
     )
     ResponsivePhotoGallery(photos)

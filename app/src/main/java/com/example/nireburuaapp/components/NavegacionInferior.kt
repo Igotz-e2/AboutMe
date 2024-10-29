@@ -1,11 +1,14 @@
 package com.example.nireburuaapp.components
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.nireburuaapp.model.Items_bottom_nav.*
 import com.example.nireburuaapp.navigation.currentRoute
@@ -22,7 +25,9 @@ fun NavegacionInferior(
     )
     BottomAppBar{
         NavigationBar (
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.fillMaxSize()
+                .fillMaxWidth()
         ){
             menu_items.forEach{item ->
                 val selected = currentRoute(navController)== item.ruta

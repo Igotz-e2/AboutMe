@@ -43,7 +43,7 @@ fun Navigation(
             GalleryScreen()
         }
         composable(NavScreen.Settings.name){
-            SettingsScreen(viewModel = SettingsViewModel())
+            SettingsScreen(SettingsViewModel())
         }
     }
 }

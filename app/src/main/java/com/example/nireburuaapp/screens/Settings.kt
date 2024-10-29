@@ -83,8 +83,8 @@ fun PerfilUsuario(
     user: FirebaseUser,
     onLogout: () -> Unit
 ) {
-    val userData = remember { mutableStateOf<Map<String, Any>?>(null) }
     val userId = user.uid
+    val userData = remember { mutableStateOf<Map<String, Any>?>(null) }
 
     fun obtenerDatosUsuario() {
         val db = FirebaseFirestore.getInstance()
@@ -95,7 +95,7 @@ fun PerfilUsuario(
                 if (document != null) {
                     userData.value = document.data
                 } else {
-
+                    println("Error al obtener datos:")
                 }
             }
     }
@@ -103,8 +103,8 @@ fun PerfilUsuario(
     LaunchedEffect(userId) {
         obtenerDatosUsuario()
     }
-    val scrollState = rememberScrollState()
 
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
@@ -158,27 +158,33 @@ fun PerfilUsuario(
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.primary
             )
-            Button(
-                onClick = onLogout,
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                )
-            ) {
-                Text(
-                    text = stringResource(R.string.boton_cerrar_sesion),
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            }
         }
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Button(
+            onClick = onLogout,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            )
+        ) {
+            Text(
+                text = stringResource(R.string.boton_cerrar_sesion),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+
     }
 }
+
 @Composable
 fun AuthScreen(
     onLogin: (String, String) -> Unit,
     onRegister: (String, String, String, String) -> Unit,
     viewModel: SettingsViewModel
 ) {
+
     val context = LocalContext.current
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),

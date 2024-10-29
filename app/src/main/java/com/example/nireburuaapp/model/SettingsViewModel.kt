@@ -152,18 +152,27 @@ class SettingsViewModel : ViewModel() {
                             "email" to account.email
                         )
                         if (userId != null) {
-                            firestore.collection("users").document(userId).get().addOnSuccessListener { document ->
-                                if (!document.exists()) {
-                                    // Si el documento no existe, lo creamos
-                                    firestore.collection("users").document(userId).set(userData).addOnSuccessListener {
-                                        Log.d("Firestore", "Usuario guardado correctamente en Firestore")
-                                    }.addOnFailureListener {
-                                        Log.w("Firestore", "Error al guardar el usuario en Firestore", it)
+                            firestore.collection("users").document(userId).get()
+                                .addOnSuccessListener { document ->
+                                    if (!document.exists()) {
+                                        // Si el documento no existe, lo creamos
+                                        firestore.collection("users").document(userId).set(userData)
+                                            .addOnSuccessListener {
+                                                Log.d(
+                                                    "Firestore",
+                                                    "Usuario guardado correctamente en Firestore"
+                                                )
+                                            }.addOnFailureListener {
+                                            Log.w(
+                                                "Firestore",
+                                                "Error al guardar el usuario en Firestore",
+                                                it
+                                            )
+                                        }
+                                    } else {
+                                        Log.d("Firestore", "El usuario ya existe en Firestore")
                                     }
-                                } else {
-                                    Log.d("Firestore", "El usuario ya existe en Firestore")
-                                }
-                            }.addOnFailureListener {
+                                }.addOnFailureListener {
                                 Log.w("Firestore", "Error al verificar el usuario en Firestore", it)
                             }
                         }
@@ -177,6 +186,7 @@ class SettingsViewModel : ViewModel() {
             Log.w("GoogleSignIn", "Google sign in failed", e)
         }
     }
+
     companion object {
         const val RC_SIGN_IN = 9001
     }
