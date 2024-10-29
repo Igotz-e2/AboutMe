@@ -39,7 +39,7 @@ fun SplashScreen(){
                 modifier = Modifier
                     .size(220.dp) // Tamaño de la imagen (círculo)
                     .clip(CircleShape) // Clip para que la imagen sea circular
-                    .border(8.dp, MaterialTheme.colorScheme.primary, CircleShape) // Borde opcional
+                    .border(8.dp, MaterialTheme.colorScheme.secondary, CircleShape) // Borde opcional
             )
             Text(
                 text = "Bienvenido",

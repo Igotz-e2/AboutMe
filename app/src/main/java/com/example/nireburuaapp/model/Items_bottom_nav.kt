@@ -29,5 +29,4 @@ sealed class Items_bottom_nav(
         Icons.Outlined.Settings,
         NavScreen.Settings.name
     )
-
 }

@@ -52,7 +52,9 @@ import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
+import com.example.nireburuaapp.components.Contador
 import com.example.nireburuaapp.components.NavegacionInferior
+import com.example.nireburuaapp.model.ContadorViewModel
 import com.example.nireburuaapp.navigation.Navigation
 import com.example.nireburuaapp.ui.theme.AboutMeTheme
 
@@ -83,7 +85,7 @@ fun HomeScreen (){
             TopAppBar(
                 title = { Text("Mi Perfil") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary // Establecer color de fondo
+                    containerColor = MaterialTheme.colorScheme.primaryContainer // Establecer color de fondo
                 ),
                 actions = {
                     IconButton(onClick = {
@@ -111,9 +113,9 @@ fun HomeScreen (){
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
+                .fillMaxWidth()
         ){
             Navigation(navController = navController)
         }
-
     }
 }

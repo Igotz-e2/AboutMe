@@ -1,7 +1,9 @@
 package com.example.nireburuaapp.components
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,8 +27,8 @@ fun NavegacionInferior(
     )
     BottomAppBar{
         NavigationBar (
-            containerColor = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxSize()
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            modifier = Modifier
                 .fillMaxWidth()
         ){
             menu_items.forEach{item ->
@@ -46,6 +48,5 @@ fun NavegacionInferior(
                 )
             }
         }
-
     }
 }
